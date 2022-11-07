@@ -16,7 +16,7 @@ class ActiveAppointmentCard extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Padding(
-      padding: EdgeInsets.only(bottom: size.height / 77.2),
+      padding:  EdgeInsets.only(bottom:size.height/77.2 ),
       child: Column(
         children: [
           Container(
@@ -37,14 +37,14 @@ class ActiveAppointmentCard extends StatelessWidget {
                 ),
               ),
               title: Text(
-                docName,
+               docName,
                 style: Constants.textStyleWO(
                     fontSize: size.height / 51.4,
                     fontWeight: FontWeight.w500,
                     color: Constants.black),
               ),
               subtitle: Text(
-                docSpecs,
+               docSpecs,
                 style: Constants.textStyleWO(
                     fontSize: size.height / 57.9,
                     fontWeight: FontWeight.w400,
