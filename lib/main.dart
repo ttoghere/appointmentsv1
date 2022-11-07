@@ -1,4 +1,5 @@
 import 'package:appointmentsv1/constants.dart';
+import 'package:appointmentsv1/widgets/star_rating.dart';
 import 'package:appointmentsv1/widgets/widgets_shelf.dart';
 import 'package:flutter/material.dart';
 
@@ -7,9 +8,9 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: 'Material App',
-      home: MainScreen(),
+      home: const MainScreen(),
     );
   }
 }
@@ -31,55 +32,92 @@ class MainScreen extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                    vertical: size.height / 57.9,
-                  ),
-                  child: Text(
-                    "Active Appointments",
-                    style: Constants.textStyleWO(
-                      fontSize: size.height / 46.3,
-                      fontWeight: FontWeight.w500,
-                      color: Constants.black,
+                Column(
+                  children: [
+                    Container(
+                      height: size.height / 2.84,
+                      width: size.height / 2.3,
+                      decoration: BoxDecoration(
+                        color: Constants.grey,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(
+                            size.height / 77.16,
+                          ),
+                          topRight: Radius.circular(
+                            size.height / 77.16,
+                          ),
+                        ),
+                      ),
+                      child: Column(
+                        children: [
+                          ListTile(
+                            leading: const CircleAvatar(
+                              backgroundImage: AssetImage("assets/doc_pic.png"),
+                            ),
+                            title: Text(
+                              "Dr. Subil Shankar Vedant",
+                              style: Constants.textStyleWO(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                  color: Constants.black),
+                            ),
+                            subtitle: Text(
+                              "Fever and Cold",
+                              style: Constants.textStyleWO(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w400,
+                                  color: Constants.black),
+                            ),
+                            trailing: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Text(
+                                  "Rate and Review",
+                                  style: Constants.textStyleWO(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w400,
+                                      color: Constants.black),
+                                ),
+                                SizedBox(width: 100, child: StarRating()),
+                              ],
+                            ),
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                "Radiology Dept., GetWell Hospital, Nagpur",
+                              ),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Text("MonetmacL, Leucitrizine, ZyroSyrup"),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                ),
-                ActiveAppointmentCard(
-                  docName: "Dr. Sunil Shankar Vedant",
-                  docPic: "assets/doc_pic.png",
-                  docSpecs: "Fever,Cold,Cough",
-                ),
-                ActiveAppointmentCard(
-                  docName: "Dr. Sunil Shankar Vedant",
-                  docPic: "assets/doc_pic.png",
-                  docSpecs: "Fever,Cold,Cough",
-                ),
-                ActiveAppointmentCard(
-                  docName: "Dr. Sunil Shankar Vedant",
-                  docPic: "assets/doc_pic.png",
-                  docSpecs: "Fever,Cold,Cough",
-                ),
-                ActiveAppointmentCard(
-                  docName: "Dr. Sunil Shankar Vedant",
-                  docPic: "assets/doc_pic.png",
-                  docSpecs: "Fever,Cold,Cough",
-                ),
-                ActiveAppointmentCard(
-                  docName: "Dr. Sunil Shankar Vedant",
-                  docPic: "assets/doc_pic.png",
-                  docSpecs: "Fever,Cold,Cough",
-                ),
-                ActiveAppointmentCard(
-                  docName: "Dr. Sunil Shankar Vedant",
-                  docPic: "assets/doc_pic.png",
-                  docSpecs: "Fever,Cold,Cough",
-                ),
-                ActiveAppointmentCard(
-                  docName: "Dr. Sunil Shankar Vedant",
-                  docPic: "assets/doc_pic.png",
-                  docSpecs: "Fever,Cold,Cough",
+                    Container(
+                      width: size.height / 2.3,
+                      height: size.height / 11.58,
+                      decoration: BoxDecoration(
+                        color: Constants.white,
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(
+                            size.height / 77.16,
+                          ),
+                          bottomRight: Radius.circular(
+                            size.height / 77.16,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
