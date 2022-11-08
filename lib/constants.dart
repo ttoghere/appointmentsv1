@@ -8,6 +8,7 @@ class Constants {
   static const Color grey = Color(0xFFEEEEEE);
   static const Color black = Color(0xFF323232);
   static const Color dividerGrey = Color(0xFFEEEEEE);
+  static const Color pink = Color(0xFFFF0096);
   //Text Style
   static TextStyle textStyleWO(
       {required double fontSize,
