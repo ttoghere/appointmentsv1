@@ -1,7 +1,12 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
 class StarRating extends StatefulWidget {
-  const StarRating({Key? key}) : super(key: key);
+  Function sendDataMethod;
+  StarRating({
+    Key? key,
+    required this.sendDataMethod,
+  }) : super(key: key);
 
   @override
   State<StarRating> createState() => _StarRatingState();
@@ -34,7 +39,10 @@ class _StarRatingState extends State<StarRating> {
                   color: Colors.grey,
                   size: 20,
                 ),
-          onTap: () => rate(1),
+          onTap: () {
+            rate(1);
+            widget.sendDataMethod();
+          },
         ),
         GestureDetector(
           child: _rating >= 2
@@ -48,7 +56,10 @@ class _StarRatingState extends State<StarRating> {
                   color: Colors.grey,
                   size: 20,
                 ),
-          onTap: () => rate(2),
+          onTap: () {
+            rate(2);
+            widget.sendDataMethod();
+          },
         ),
         GestureDetector(
           child: _rating >= 3
@@ -62,7 +73,10 @@ class _StarRatingState extends State<StarRating> {
                   color: Colors.grey,
                   size: 20,
                 ),
-          onTap: () => rate(3),
+          onTap: () {
+            rate(3);
+            widget.sendDataMethod();
+          },
         ),
         GestureDetector(
           child: _rating >= 4
@@ -76,7 +90,10 @@ class _StarRatingState extends State<StarRating> {
                   color: Colors.grey,
                   size: 20,
                 ),
-          onTap: () => rate(4),
+          onTap: () {
+            rate(4);
+            widget.sendDataMethod();
+          },
         ),
         GestureDetector(
           child: _rating >= 5
@@ -90,7 +107,10 @@ class _StarRatingState extends State<StarRating> {
                   color: Colors.grey,
                   size: 20,
                 ),
-          onTap: () => rate(5),
+          onTap: () {
+            rate(5);
+            widget.sendDataMethod();
+          },
         )
       ],
     );

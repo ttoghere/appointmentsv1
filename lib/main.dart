@@ -51,6 +51,7 @@ class MainScreen extends StatelessWidget {
                         ),
                       ),
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           ListTile(
                             leading: const CircleAvatar(
@@ -83,7 +84,12 @@ class MainScreen extends StatelessWidget {
                                       fontWeight: FontWeight.w400,
                                       color: Constants.black),
                                 ),
-                                SizedBox(width: 100, child: StarRating()),
+                                SizedBox(
+                                  width: 100,
+                                  child: StarRating(
+                                    sendDataMethod: () {},
+                                  ),
+                                ),
                               ],
                             ),
                           ),
@@ -98,6 +104,38 @@ class MainScreen extends StatelessWidget {
                             children: [
                               Text("MonetmacL, Leucitrizine, ZyroSyrup"),
                             ],
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 5),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text("Reports"),
+                                Row(
+                                  children: List.generate(
+                                      2,
+                                      (index) => Padding(
+                                            padding: const EdgeInsets.only(
+                                                right: 8.0),
+                                            child: GestureDetector(
+                                              onTap: () {},
+                                              child: Container(
+                                                decoration: BoxDecoration(),
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Image.asset(
+                                                        "assets/list_logo.png"),
+                                                    Text("Blood Test"),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          )).toList(),
+                                ),
+                              ],
+                            ),
                           ),
                         ],
                       ),
@@ -116,6 +154,30 @@ class MainScreen extends StatelessWidget {
                           ),
                         ),
                       ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          activeCardButton(
+                              voidCallback: () {},
+                              size: size,
+                              imagePath: "assets/reschedule.png",
+                              buttonText: "Reschedule"),
+                          activeCardDivider(size: size),
+                          activeCardButton(
+                            size: size,
+                            imagePath: "assets/cross.png",
+                            buttonText: "Cancel",
+                            voidCallback: () {},
+                          ),
+                          activeCardDivider(size: size),
+                          activeCardButton(
+                            size: size,
+                            imagePath: "assets/pen.png",
+                            buttonText: "Update",
+                            voidCallback: () {},
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
@@ -123,6 +185,39 @@ class MainScreen extends StatelessWidget {
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  GestureDetector activeCardButton({
+    required Size size,
+    required String imagePath,
+    required String buttonText,
+    required VoidCallback voidCallback,
+  }) {
+    return GestureDetector(
+      onTap: voidCallback,
+      child: Padding(
+        padding: EdgeInsets.only(top: size.height / 71.2),
+        child: Column(
+          children: [
+            Image.asset(imagePath),
+            SizedBox(
+              height: size.height / 308.6,
+            ),
+            Text(buttonText),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Padding activeCardDivider({required Size size}) {
+    return Padding(
+      padding: EdgeInsets.only(top: size.height / 132.3),
+      child: VerticalDivider(
+        thickness: 2,
+        color: Constants.dividerGrey,
       ),
     );
   }
