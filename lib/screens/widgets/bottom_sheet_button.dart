@@ -17,9 +17,8 @@ class BottomSheetButton extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         if (colorChanger) {
-         Navigator.of(context).pop();
+          Navigator.of(context).pop();
         } else {
-          widget.colorChangerFunc();
           Navigator.pop(context);
         }
       },

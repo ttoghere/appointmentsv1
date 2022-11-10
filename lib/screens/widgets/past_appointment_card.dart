@@ -7,25 +7,34 @@ import 'widgets_shelf.dart';
 class PastAppointments extends StatefulWidget {
   const PastAppointments({
     Key? key,
-    required this.rateState,
     required this.size,
-    required this.colorChangerFunc,
-    required this.colorChanger,
-    required this.rateChangerFunc,
   }) : super(key: key);
-  final bool rateState;
+
   final Size size;
-  final bool colorChanger;
-  final Function colorChangerFunc;
-  final Function rateChangerFunc;
 
   @override
   State<PastAppointments> createState() => _PastAppointmentsState();
 }
 
 class _PastAppointmentsState extends State<PastAppointments> {
+  bool rateState = true;
+  bool colorState = true;
+  bool rateStateChange() {
+    setState(() {
+      rateState = !rateState;
+    });
+    return rateState;
+  }
+
+  bool colorChange() {
+    setState(() {
+      colorState = !colorState;
+    });
+    return colorState;
+  }
+
   void unFocus() {
-    widget.colorChangerFunc();
+    colorChange();
     showModalBottomSheet(
         barrierColor: Colors.transparent,
         context: context,
@@ -34,14 +43,14 @@ class _PastAppointmentsState extends State<PastAppointments> {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               BottomSheetButton(
-                  colorChanger: widget.colorChanger, widget: widget),
+                  colorChanger: colorState, widget: widget),
               BottomSheetButton(
-                  colorChanger: widget.colorChanger, widget: widget),
+                  colorChanger: colorState, widget: widget),
               BottomSheetButton(
-                  colorChanger: widget.colorChanger, widget: widget),
+                  colorChanger: colorState, widget: widget),
             ],
           );
-        }).whenComplete(() => widget.colorChangerFunc());
+        }).whenComplete(() => colorChange());
   }
 
   @override
@@ -55,7 +64,7 @@ class _PastAppointmentsState extends State<PastAppointments> {
         child: Container(
           decoration: BoxDecoration(
               border: Border.all(
-                color: widget.colorChanger ? Constants.grey : Colors.blue[600]!,
+                color: colorState ? Constants.grey : Colors.blue[600]!,
                 width: 4,
               ),
               borderRadius: BorderRadius.circular(10)),
@@ -98,7 +107,7 @@ class _PastAppointmentsState extends State<PastAppointments> {
                       ),
                       trailing: GestureDetector(
                         onTap: () {},
-                        child: widget.rateState
+                        child:rateState
                             ? Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -116,9 +125,9 @@ class _PastAppointmentsState extends State<PastAppointments> {
                                     width: 100,
                                     child: StarRating(
                                       sendDataMethod: () {
-                                        Timer(Duration(milliseconds: 200), () {
+                                        Timer(Duration(milliseconds: 500), () {
                                           setState(() {
-                                            widget.rateChangerFunc();
+                                           rateStateChange();
                                           });
                                         });
                                       },
@@ -245,9 +254,9 @@ class _PastAppointmentsState extends State<PastAppointments> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     ActiveCardButton(
-                        colorChanger: widget.colorChanger,
+                        colorChanger:colorState,
                         voidCallback: () {
-                          widget.colorChangerFunc();
+                         colorChange();
                         },
                         buttonInfo: "(07/11/22)",
                         size: widget.size,
@@ -255,13 +264,13 @@ class _PastAppointmentsState extends State<PastAppointments> {
                         buttonText: "Follow Up"),
                     ActiveCardDivider(),
                     ActiveCardButton(
-                      colorChanger: widget.colorChanger,
+                      colorChanger: colorState,
                       buttonInfo: "(4tests)",
                       size: widget.size,
                       imagePath: "assets/chem_glass.png",
                       buttonText: "Labs",
                       voidCallback: () {
-                        widget.colorChangerFunc();
+                        colorChange();
                       },
                     ),
                     ActiveCardDivider(),
@@ -271,9 +280,9 @@ class _PastAppointmentsState extends State<PastAppointments> {
                       imagePath: "assets/person_outlined.png",
                       buttonText: "Update",
                       voidCallback: () {
-                        widget.colorChangerFunc();
+                        colorChange();
                       },
-                      colorChanger: widget.colorChanger,
+                      colorChanger:colorState,
                     )
                   ],
                 ),
