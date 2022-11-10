@@ -1,12 +1,30 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+
 import '../../constants.dart';
 import 'widgets_shelf.dart';
 
 class PastAppointments extends StatefulWidget {
-  const PastAppointments({
+  final String imagePath;
+  final String doctorName;
+  final String doctorsprofession;
+  final String doctorLocation;
+  final String followUpTime;
+  final String labTestCount;
+  final String updateDoctor;
+  final String chemList;
+  PastAppointments({
     Key? key,
+    required this.chemList,
+    required this.imagePath,
+    required this.doctorName,
+    required this.doctorsprofession,
+    required this.doctorLocation,
+    required this.followUpTime,
+    required this.labTestCount,
+    required this.updateDoctor,
     required this.size,
   }) : super(key: key);
 
@@ -18,7 +36,7 @@ class PastAppointments extends StatefulWidget {
 
 class _PastAppointmentsState extends State<PastAppointments> {
   bool rateState = true;
-  bool colorState = true;
+  bool colorState = false;
   bool rateStateChange() {
     setState(() {
       rateState = !rateState;
@@ -42,12 +60,9 @@ class _PastAppointmentsState extends State<PastAppointments> {
           return Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              BottomSheetButton(
-                  colorChanger: colorState, widget: widget),
-              BottomSheetButton(
-                  colorChanger: colorState, widget: widget),
-              BottomSheetButton(
-                  colorChanger: colorState, widget: widget),
+              BottomSheetButton(colorChanger: colorState, widget: widget),
+              BottomSheetButton(colorChanger: colorState, widget: widget),
+              BottomSheetButton(colorChanger: colorState, widget: widget),
             ],
           );
         }).whenComplete(() => colorChange());
@@ -55,10 +70,13 @@ class _PastAppointmentsState extends State<PastAppointments> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.only(top: 12),
       child: GestureDetector(
         onTap: () {
+          print(size.height);
+          print(size.width);
           unFocus();
         },
         child: Container(
@@ -71,7 +89,7 @@ class _PastAppointmentsState extends State<PastAppointments> {
           child: Column(
             children: [
               Container(
-                height: widget.size.height / 3.50,
+                height: 261,
                 width: widget.size.height / 2.3,
                 decoration: BoxDecoration(
                   color: Constants.grey,
@@ -88,18 +106,18 @@ class _PastAppointmentsState extends State<PastAppointments> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     ListTile(
-                      leading: const CircleAvatar(
-                        backgroundImage: AssetImage("assets/doc_pic.png"),
+                      leading: CircleAvatar(
+                        backgroundImage: AssetImage(widget.imagePath),
                       ),
                       title: Text(
-                        "Dr. Subil Shankar Vedant",
+                        widget.doctorName,
                         style: Constants.textStyleWO(
                             fontSize: 16,
                             fontWeight: FontWeight.w500,
                             color: Constants.black),
                       ),
                       subtitle: Text(
-                        "Fever and Cold",
+                        widget.doctorsprofession,
                         style: Constants.textStyleWO(
                             fontSize: 16,
                             fontWeight: FontWeight.w400,
@@ -107,7 +125,7 @@ class _PastAppointmentsState extends State<PastAppointments> {
                       ),
                       trailing: GestureDetector(
                         onTap: () {},
-                        child:rateState
+                        child: rateState
                             ? Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -127,7 +145,7 @@ class _PastAppointmentsState extends State<PastAppointments> {
                                       sendDataMethod: () {
                                         Timer(Duration(milliseconds: 500), () {
                                           setState(() {
-                                           rateStateChange();
+                                            rateStateChange();
                                           });
                                         });
                                       },
@@ -155,7 +173,7 @@ class _PastAppointmentsState extends State<PastAppointments> {
                                 width: 7,
                               ),
                               Text(
-                                "Radiology Dept., GetWell Hospital, Nagpur",
+                                widget.doctorLocation,
                                 style: Constants.textStyleWO(
                                     fontSize: 16,
                                     fontWeight: FontWeight.w400,
@@ -203,31 +221,8 @@ class _PastAppointmentsState extends State<PastAppointments> {
                           SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
                             child: Row(
-                              children: List.generate(
-                                  5,
-                                  (index) => InkWell(
-                                        onTap: () {
-                                          print("Blood Report");
-                                        },
-                                        child: Container(
-                                          height: 80,
-                                          width: 90,
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Image.asset(
-                                                "assets/list_logo.png",
-                                                fit: BoxFit.fill,
-                                              ),
-                                              SizedBox(
-                                                height: 4,
-                                              ),
-                                              Text("Blood Test"),
-                                            ],
-                                          ),
-                                        ),
-                                      )).toList(),
+                              children: List.generate(5, (index) => TestIcon())
+                                  .toList(),
                             ),
                           ),
                         ],
@@ -238,7 +233,7 @@ class _PastAppointmentsState extends State<PastAppointments> {
               ),
               Container(
                 width: widget.size.height / 2.3,
-                height: widget.size.height / 11.58,
+                height: 80,
                 decoration: BoxDecoration(
                   color: Constants.white,
                   borderRadius: BorderRadius.only(
@@ -254,18 +249,18 @@ class _PastAppointmentsState extends State<PastAppointments> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     ActiveCardButton(
-                        colorChanger:colorState,
+                        colorChanger: colorState,
                         voidCallback: () {
-                         colorChange();
+                          colorChange();
                         },
-                        buttonInfo: "(07/11/22)",
+                        buttonInfo: widget.followUpTime,
                         size: widget.size,
                         imagePath: "assets/video_call.png",
                         buttonText: "Follow Up"),
                     ActiveCardDivider(),
                     ActiveCardButton(
                       colorChanger: colorState,
-                      buttonInfo: "(4tests)",
+                      buttonInfo: widget.labTestCount,
                       size: widget.size,
                       imagePath: "assets/chem_glass.png",
                       buttonText: "Labs",
@@ -276,19 +271,51 @@ class _PastAppointmentsState extends State<PastAppointments> {
                     ActiveCardDivider(),
                     ActiveCardButton(
                       size: widget.size,
-                      buttonInfo: "(Dr. Shamshankar Prasad)",
+                      buttonInfo: widget.updateDoctor,
                       imagePath: "assets/person_outlined.png",
                       buttonText: "Update",
                       voidCallback: () {
                         colorChange();
                       },
-                      colorChanger:colorState,
+                      colorChanger: colorState,
                     )
                   ],
                 ),
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class TestIcon extends StatelessWidget {
+  const TestIcon({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        print("Blood Report");
+      },
+      child: Container(
+        height: 70,
+        width: 90,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Image.asset(
+              "assets/list_logo.png",
+              fit: BoxFit.fill,
+            ),
+            SizedBox(
+              height: 4,
+            ),
+            Text("Blood Test"),
+          ],
         ),
       ),
     );

@@ -27,7 +27,7 @@ class ActiveAppointmentCard extends StatelessWidget {
               ),
             ),
             width: size.height / 2.33,
-            height: size.height / 12.51,
+            height: 75,
             child: ListTile(
               leading: Padding(
                 padding: EdgeInsets.only(top: size.height / 54.47),
@@ -60,7 +60,7 @@ class ActiveAppointmentCard extends StatelessWidget {
               ),
             ),
             width: size.height / 2.33,
-            height: size.height / 14.9,
+            height: 62,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [

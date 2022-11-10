@@ -57,9 +57,6 @@ class NoAppointment extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(
-          height: size.height / 9.54,
-        ),
       ],
     );
   }
