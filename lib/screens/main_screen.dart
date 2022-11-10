@@ -12,7 +12,15 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  bool rateState = true;
   bool colorState = true;
+  bool rateStateChange() {
+    setState(() {
+      rateState = !rateState;
+    });
+    return rateState;
+  }
+
   bool colorChange() {
     setState(() {
       colorState = !colorState;
@@ -46,8 +54,10 @@ class _MainScreenState extends State<MainScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: List.generate(
-                        1,
+                        3,
                         (index) => PastAppointments(
+                          rateState: rateState,
+                          rateChangerFunc: () => rateStateChange(),
                           colorChangerFunc: () => colorChange(),
                           size: size,
                           colorChanger: colorState,

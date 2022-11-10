@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import '../../constants.dart';
 import 'widgets_shelf.dart';
@@ -5,14 +7,17 @@ import 'widgets_shelf.dart';
 class PastAppointments extends StatefulWidget {
   const PastAppointments({
     Key? key,
+    required this.rateState,
     required this.size,
     required this.colorChangerFunc,
     required this.colorChanger,
+    required this.rateChangerFunc,
   }) : super(key: key);
-
+  final bool rateState;
   final Size size;
   final bool colorChanger;
   final Function colorChangerFunc;
+  final Function rateChangerFunc;
 
   @override
   State<PastAppointments> createState() => _PastAppointmentsState();
@@ -28,12 +33,15 @@ class _PastAppointmentsState extends State<PastAppointments> {
           return Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              BottomSheetButton(widget: widget),
-              BottomSheetButton(widget: widget),
-              BottomSheetButton(widget: widget),
+              BottomSheetButton(
+                  colorChanger: widget.colorChanger, widget: widget),
+              BottomSheetButton(
+                  colorChanger: widget.colorChanger, widget: widget),
+              BottomSheetButton(
+                  colorChanger: widget.colorChanger, widget: widget),
             ],
           );
-        });
+        }).whenComplete(() => widget.colorChangerFunc());
   }
 
   @override
@@ -90,27 +98,41 @@ class _PastAppointmentsState extends State<PastAppointments> {
                       ),
                       trailing: GestureDetector(
                         onTap: () {},
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              "Rate and Review",
-                              style: Constants.textStyleWO(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w400,
-                                  color: Constants.black),
-                            ),
-                            SizedBox(
-                              width: 100,
-                              child: StarRating(
-                                sendDataMethod: () {},
+                        child: widget.rateState
+                            ? Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text(
+                                    "Rate and Review",
+                                    style: Constants.textStyleWO(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w400,
+                                        color: Constants.black),
+                                  ),
+                                  SizedBox(
+                                    width: 100,
+                                    child: StarRating(
+                                      sendDataMethod: () {
+                                        Timer(Duration(milliseconds: 200), () {
+                                          setState(() {
+                                            widget.rateChangerFunc();
+                                          });
+                                        });
+                                      },
+                                    ),
+                                  ),
+                                ],
+                              )
+                            : Text(
+                                "Add Review",
+                                style: Constants.textStyleWO(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w700,
+                                    color: Constants.pink),
                               ),
-                            ),
-                          ],
-                        ),
                       ),
                     ),
                     Padding(
@@ -180,7 +202,7 @@ class _PastAppointmentsState extends State<PastAppointments> {
                                         },
                                         child: Container(
                                           height: 80,
-                                          width: 110,
+                                          width: 90,
                                           child: Column(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,

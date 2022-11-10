@@ -3,21 +3,25 @@ import 'package:flutter/material.dart';
 
 import '../../constants.dart';
 
-
 class BottomSheetButton extends StatelessWidget {
-  const BottomSheetButton({
+  BottomSheetButton({
     Key? key,
     required this.widget,
+    required this.colorChanger,
   }) : super(key: key);
 
   final PastAppointments widget;
-
+  bool colorChanger;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        widget.colorChangerFunc();
-        Navigator.pop(context);
+        if (colorChanger) {
+         Navigator.of(context).pop();
+        } else {
+          widget.colorChangerFunc();
+          Navigator.pop(context);
+        }
       },
       child: Container(
         padding: EdgeInsets.all(16),
