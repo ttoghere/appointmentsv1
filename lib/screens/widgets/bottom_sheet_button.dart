@@ -8,35 +8,29 @@ class BottomSheetButton extends StatelessWidget {
     Key? key,
     required this.widget,
     required this.colorChanger,
+    required this.message,
   }) : super(key: key);
 
+  final String message;
   final PastAppointments widget;
   bool colorChanger;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        if (colorChanger) {
-          Navigator.of(context).pop();
-        } else {
-          Navigator.pop(context);
-        }
+        Navigator.of(context).pop();
       },
       child: Container(
         padding: EdgeInsets.all(16),
         color: Constants.pink,
         child: Row(
           children: [
-            Icon(
-              Icons.notification_important_outlined,
-              color: Colors.white,
-              size: 19,
-            ),
+            Image.asset("assets/noti.png"),
             SizedBox(
               width: 4,
             ),
             Text(
-              "Share The Doctor",
+              message,
               style: Constants.textStyleWO(
                   fontSize: 20,
                   fontWeight: FontWeight.w500,

@@ -36,7 +36,7 @@ class PastAppointments extends StatefulWidget {
 
 class _PastAppointmentsState extends State<PastAppointments> {
   bool rateState = true;
-  bool colorState = false;
+  bool colorState = true;
   bool rateStateChange() {
     setState(() {
       rateState = !rateState;
@@ -60,9 +60,21 @@ class _PastAppointmentsState extends State<PastAppointments> {
           return Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              BottomSheetButton(colorChanger: colorState, widget: widget),
-              BottomSheetButton(colorChanger: colorState, widget: widget),
-              BottomSheetButton(colorChanger: colorState, widget: widget),
+              BottomSheetButton(
+                colorChanger: colorState,
+                widget: widget,
+                message: "Share The Doctor",
+              ),
+              BottomSheetButton(
+                colorChanger: colorState,
+                widget: widget,
+                message: "Add Report to Favorites",
+              ),
+              BottomSheetButton(
+                colorChanger: colorState,
+                widget: widget,
+                message: "Add Doctor to Favorites",
+              ),
             ],
           );
         }).whenComplete(() => colorChange());
@@ -258,15 +270,18 @@ class _PastAppointmentsState extends State<PastAppointments> {
                         imagePath: "assets/video_call.png",
                         buttonText: "Follow Up"),
                     ActiveCardDivider(),
-                    ActiveCardButton(
-                      colorChanger: colorState,
-                      buttonInfo: widget.labTestCount,
-                      size: widget.size,
-                      imagePath: "assets/chem_glass.png",
-                      buttonText: "Labs",
-                      voidCallback: () {
-                        colorChange();
-                      },
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 1.0),
+                      child: ActiveCardButton(
+                        colorChanger: colorState,
+                        buttonInfo: widget.labTestCount,
+                        size: widget.size,
+                        imagePath: "assets/chem_glass.png",
+                        buttonText: "Labs",
+                        voidCallback: () {
+                          colorChange();
+                        },
+                      ),
                     ),
                     ActiveCardDivider(),
                     ActiveCardButton(

@@ -10,21 +10,21 @@ class ActiveAppointmentModel {
   });
 
  static List<ActiveAppointmentModel> activeAppointments = [
-    // ActiveAppointmentModel(
-    //   docName: "Maral",
-    //   docSpecs: "Health",
-    //   docPic: "assets/doc_pic.png",
-    // ),
-    // ActiveAppointmentModel(
-    //   docName: "Maral",
-    //   docSpecs: "Health",
-    //   docPic: "assets/doc_pic.png",
-    // ),
-    // ActiveAppointmentModel(
-    //   docName: "Maral",
-    //   docSpecs: "Health",
-    //   docPic: "assets/doc_pic.png",
-    // ),
+    ActiveAppointmentModel(
+      docName: "Maral",
+      docSpecs: "Health",
+      docPic: "assets/doc_pic.png",
+    ),
+    ActiveAppointmentModel(
+      docName: "Maral",
+      docSpecs: "Health",
+      docPic: "assets/doc_pic.png",
+    ),
+    ActiveAppointmentModel(
+      docName: "Maral",
+      docSpecs: "Health",
+      docPic: "assets/doc_pic.png",
+    ),
     ActiveAppointmentModel(
       docName: "Maral",
       docSpecs: "Health",

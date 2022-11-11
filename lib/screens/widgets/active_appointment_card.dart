@@ -70,11 +70,14 @@ class ActiveAppointmentCard extends StatelessWidget {
                     imagePath: "assets/reschedule.png",
                     buttonText: "Reschedule"),
                 activeCardDivider(size: size),
-                activeCardButton(
-                  size: size,
-                  imagePath: "assets/cross.png",
-                  buttonText: "Cancel",
-                  voidCallback: () {},
+                Padding(
+                  padding: const EdgeInsets.only(top:5.0),
+                  child: activeCardButton(
+                    size: size,
+                    imagePath: "assets/cross.png",
+                    buttonText: "Cancel",
+                    voidCallback: () {},
+                  ),
                 ),
                 activeCardDivider(size: size),
                 activeCardButton(
