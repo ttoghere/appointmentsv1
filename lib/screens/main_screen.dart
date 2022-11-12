@@ -45,90 +45,89 @@ class _MainScreenState extends State<MainScreen> {
           child: PastAppointmentModel.pastAppointments.isEmpty &&
                   ActiveAppointmentModel.activeAppointments.isEmpty
               ? NoAppointment(size: size)
-              : Stack(
+              : Column(
                   children: [
-                    SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              if (ActiveAppointmentModel
-                                  .activeAppointments.isEmpty)
-                                SizedBox()
-                              else
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(vertical: 16),
-                                  child: Text(
-                                    "Active Appointments",
+                    SizedBox(
+                      height: size.height / 1.33,
+                      child: SingleChildScrollView(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            if (ActiveAppointmentModel
+                                .activeAppointments.isEmpty)
+                              SizedBox()
+                            else
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 16),
+                                child: Text(
+                                  "Active Appointments",
+                                  style: Constants.textStyleWO(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w500,
+                                      color: Constants.black),
+                                ),
+                              ),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: List.generate(
+                                  ActiveAppointmentModel
+                                      .activeAppointments.length, (index) {
+                                var access = ActiveAppointmentModel
+                                    .activeAppointments[index];
+                                return ActiveAppointmentCard(
+                                  docName: access.docName,
+                                  docPic: access.docPic,
+                                  docSpecs: access.docSpecs,
+                                );
+                              }),
+                            ),
+                            if (PastAppointmentModel.pastAppointments.isEmpty)
+                              const SizedBox()
+                            else
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Past Appointments",
                                     style: Constants.textStyleWO(
                                         fontSize: 20,
                                         fontWeight: FontWeight.w500,
                                         color: Constants.black),
                                   ),
-                                ),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: List.generate(
-                                    ActiveAppointmentModel
-                                        .activeAppointments.length, (index) {
-                                  var access = ActiveAppointmentModel
-                                      .activeAppointments[index];
-                                  return ActiveAppointmentCard(
-                                    docName: access.docName,
-                                    docPic: access.docPic,
-                                    docSpecs: access.docSpecs,
-                                  );
-                                }),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: List.generate(
+                                        PastAppointmentModel
+                                            .pastAppointments.length, (index) {
+                                      var access = PastAppointmentModel
+                                          .pastAppointments[index];
+                                      return PastAppointments(
+                                          chemList: access.chemList,
+                                          imagePath: access.imagePath,
+                                          doctorName: access.doctorName,
+                                          doctorsprofession:
+                                              access.doctorsprofession,
+                                          doctorLocation: access.doctorLocation,
+                                          followUpTime: access.followUpTime,
+                                          labTestCount: access.labTestCount,
+                                          updateDoctor: access.updateDoctor,
+                                          size: size);
+                                    }),
+                                  ),
+                                ],
                               ),
-                              if (PastAppointmentModel.pastAppointments.isEmpty)
-                                const SizedBox()
-                              else
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "Past Appointments",
-                                      style: Constants.textStyleWO(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w500,
-                                          color: Constants.black),
-                                    ),
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: List.generate(
-                                          PastAppointmentModel.pastAppointments
-                                              .length, (index) {
-                                        var access = PastAppointmentModel
-                                            .pastAppointments[index];
-                                        return PastAppointments(
-                                            chemList: access.chemList,
-                                            imagePath: access.imagePath,
-                                            doctorName: access.doctorName,
-                                            doctorsprofession:
-                                                access.doctorsprofession,
-                                            doctorLocation:
-                                                access.doctorLocation,
-                                            followUpTime: access.followUpTime,
-                                            labTestCount: access.labTestCount,
-                                            updateDoctor: access.updateDoctor,
-                                            size: size);
-                                      }),
-                                    ),
-                                  ],
-                                ),
-                            ],
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
-                    Positioned(
-                      bottom: 50,
+                    Container(
+                      color: Colors.white,
+                      padding:
+                          EdgeInsets.symmetric(vertical: 24, horizontal: 16),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
