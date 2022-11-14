@@ -81,8 +81,15 @@ class _PastAppointmentsState extends State<PastAppointments> {
         }).whenComplete(() => colorChange());
   }
 
-  List<Map<String,dynamic>> testsList=[
-    {"labCount":4,"problems":["Blood Test","Oxytyocin Test","CMP Test",],}
+  List<Map<String, dynamic>> testsList = [
+    {
+      "labCount": 4,
+      "problems": [
+        "Blood Test",
+        "Oxytyocin Test",
+        "CMP Test",
+      ],
+    }
   ];
 
   @override
@@ -96,18 +103,7 @@ class _PastAppointmentsState extends State<PastAppointments> {
           print(size.width);
           unFocus();
         },
-        onTap: () => Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => ReportDetail(
-              problems:testsList[0]["problems"],
-              imagePath: widget.imagePath,
-              doctorName: widget.doctorName,
-              doctorsprofession: widget.doctorsprofession,
-              doctorLocation: widget.doctorLocation,
-              labTestCount:widget.labTestCount ,
-            ),
-          ),
-        ),
+        onTap: () {},
         child: Container(
           decoration: BoxDecoration(
               border: Border.all(
@@ -296,6 +292,18 @@ class _PastAppointmentsState extends State<PastAppointments> {
                         imagePath: "assets/chem_glass.png",
                         buttonText: "Labs",
                         voidCallback: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => ReportDetail(
+                                problems: testsList[0]["problems"],
+                                imagePath: widget.imagePath,
+                                doctorName: widget.doctorName,
+                                doctorsprofession: widget.doctorsprofession,
+                                doctorLocation: widget.doctorLocation,
+                                labTestCount: widget.labTestCount,
+                              ),
+                            ),
+                          );
                           colorChange();
                         },
                       ),
