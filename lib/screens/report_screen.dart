@@ -7,16 +7,16 @@ import 'package:appointmentsv1/models/active_appointment_model.dart';
 import 'package:appointmentsv1/models/past_appointment.dart';
 import 'package:appointmentsv1/screens/widgets/widgets_shelf.dart';
 
-class MainScreen extends StatefulWidget {
-  MainScreen({
+class ReportScreen extends StatefulWidget {
+  ReportScreen({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<MainScreen> createState() => _MainScreenState();
+  State<ReportScreen> createState() => _ReportScreenState();
 }
 
-class _MainScreenState extends State<MainScreen> {
+class _ReportScreenState extends State<ReportScreen> {
   @override
   void initState() {
     super.initState();
@@ -131,7 +131,7 @@ class _MainScreenState extends State<MainScreen> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          MainScreenButtons(
+                          ReportScreenButtons(
                             onpress: () {},
                             height: size.width / 8.92,
                             width: size.width / 1.72,
@@ -156,7 +156,7 @@ class _MainScreenState extends State<MainScreen> {
                           SizedBox(
                             width: 8,
                           ),
-                          MainScreenButtons(
+                          ReportScreenButtons(
                             onpress: () {},
                             height: size.width / 9,
                             width: size.width / 9,
@@ -165,7 +165,7 @@ class _MainScreenState extends State<MainScreen> {
                           SizedBox(
                             width: 8,
                           ),
-                          MainScreenButtons(
+                          ReportScreenButtons(
                             onpress: () {},
                             height: size.width / 9,
                             width: size.width / 9,
@@ -183,8 +183,8 @@ class _MainScreenState extends State<MainScreen> {
 }
 
 //9
-class MainScreenButtons extends StatelessWidget {
-  const MainScreenButtons({
+class ReportScreenButtons extends StatelessWidget {
+  const ReportScreenButtons({
     Key? key,
     required this.onpress,
     required this.height,
