@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:async';
 
+import 'package:appointmentsv1/screens/widgets/report_detail.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants.dart';
@@ -80,17 +81,33 @@ class _PastAppointmentsState extends State<PastAppointments> {
         }).whenComplete(() => colorChange());
   }
 
+  List<Map<String,dynamic>> testsList=[
+    {"labCount":4,"problems":["Blood Test","Oxytyocin Test","CMP Test",],}
+  ];
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.only(top: 12),
       child: GestureDetector(
-        onTap: () {
+        onLongPress: () {
           print(size.height);
           print(size.width);
           unFocus();
         },
+        onTap: () => Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => ReportDetail(
+              problems:testsList[0]["problems"],
+              imagePath: widget.imagePath,
+              doctorName: widget.doctorName,
+              doctorsprofession: widget.doctorsprofession,
+              doctorLocation: widget.doctorLocation,
+              labTestCount:widget.labTestCount ,
+            ),
+          ),
+        ),
         child: Container(
           decoration: BoxDecoration(
               border: Border.all(
