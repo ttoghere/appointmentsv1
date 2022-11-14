@@ -37,6 +37,7 @@ class _ReportDetailState extends State<ReportDetail> {
     return Scaffold(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
             color: Constants.grey,
@@ -162,13 +163,42 @@ class _ReportDetailState extends State<ReportDetail> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("Lab Tests"),
-                Text("${widget.labTestCount} Compulsory Tests"),
+                Text(
+                  "Lab Tests",
+                  style: Constants.textStyleWO(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500,
+                    color: Constants.black,
+                  ),
+                ),
+                Text(
+                  "${widget.labTestCount} Compulsory Tests",
+                  style: Constants.textStyleWO(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w700,
+                    color: Constants.darkPink,
+                  ),
+                ),
                 SizedBox(
                   height: 25,
                 ),
                 Column(
-                  children: widget.problems.map((e) => Text(e)).toList(),
+                  children: widget.problems
+                      .map((e) => Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                e,
+                                style: Constants.textStyleWO(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                  color: Constants.black,
+                                ),
+                              ),
+                              Divider(),
+                            ],
+                          ))
+                      .toList(),
                 ),
               ],
             ),
