@@ -1,3 +1,4 @@
+import 'package:appointmentsv1/screens/widgets/booking_successful.dart';
 import 'package:flutter/material.dart';
 import 'screens/report_screen.dart';
 
@@ -8,7 +9,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Material App',
-      home: ReportScreen(),
+      home: BookingSuccesful(),
     );
   }
 }

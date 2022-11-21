@@ -352,7 +352,7 @@ class TestIcon extends StatelessWidget {
               fit: BoxFit.fill,
             ),
             SizedBox(
-              height: 4,
+              height: 3,
             ),
             Text("Blood Test"),
           ],
