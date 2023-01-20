@@ -6,13 +6,12 @@ import '../../constants.dart';
 class BottomSheetButton extends StatelessWidget {
   BottomSheetButton({
     Key? key,
-    required this.widget,
+    // required this.widget,
     required this.colorChanger,
     required this.message,
   }) : super(key: key);
 
   final String message;
-  final PastAppointments widget;
   bool colorChanger;
   @override
   Widget build(BuildContext context) {

@@ -52,34 +52,33 @@ class _PastAppointmentsState extends State<PastAppointments> {
     return colorState;
   }
 
-  void unFocus() {
-    colorChange();
-    showModalBottomSheet(
-        barrierColor: Colors.transparent,
-        context: context,
-        builder: (context) {
-          return Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              BottomSheetButton(
-                colorChanger: colorState,
-                widget: widget,
-                message: "Share The Doctor",
-              ),
-              BottomSheetButton(
-                colorChanger: colorState,
-                widget: widget,
-                message: "Add Report to Favorites",
-              ),
-              BottomSheetButton(
-                colorChanger: colorState,
-                widget: widget,
-                message: "Add Doctor to Favorites",
-              ),
-            ],
-          );
-        }).whenComplete(() => colorChange());
-  }
+  // void unFocus() {
+  //   showModalBottomSheet(
+  //       barrierColor: Colors.transparent,
+  //       context: context,
+  //       builder: (context) {
+  //         return Column(
+  //           mainAxisSize: MainAxisSize.min,
+  //           children: <Widget>[
+  //             BottomSheetButton(
+  //               colorChanger: colorState,
+  //               widget: widget,
+  //               message: "Share The Doctor",
+  //             ),
+  //             BottomSheetButton(
+  //               colorChanger: colorState,
+  //               widget: widget,
+  //               message: "Add Report to Favorites",
+  //             ),
+  //             BottomSheetButton(
+  //               colorChanger: colorState,
+  //               widget: widget,
+  //               message: "Add Doctor to Favorites",
+  //             ),
+  //           ],
+  //         );
+  //       }).whenComplete(() => colorChange());
+  // }
 
   List<Map<String, dynamic>> testsList = [
     {
@@ -98,12 +97,33 @@ class _PastAppointmentsState extends State<PastAppointments> {
     return Padding(
       padding: const EdgeInsets.only(top: 12),
       child: GestureDetector(
-        onLongPress: () {
+        onTap: () {
           print(size.height);
           print(size.width);
-          unFocus();
+          colorChange();
+          showModalBottomSheet(
+              barrierColor: Colors.transparent,
+              context: context,
+              builder: (context) {
+                return Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    BottomSheetButton(
+                      colorChanger: colorState,
+                      message: "Share The Doctor",
+                    ),
+                    BottomSheetButton(
+                      colorChanger: colorState,
+                      message: "Add Report to Favorites",
+                    ),
+                    BottomSheetButton(
+                      colorChanger: colorState,
+                      message: "Add Doctor to Favorites",
+                    ),
+                  ],
+                );
+              }).whenComplete(() => colorChange());
         },
-        onTap: () {},
         child: Container(
           decoration: BoxDecoration(
               border: Border.all(
@@ -276,7 +296,31 @@ class _PastAppointmentsState extends State<PastAppointments> {
                     ActiveCardButton(
                         colorChanger: colorState,
                         voidCallback: () {
+                          print(size.height);
+                          print(size.width);
                           colorChange();
+                          showModalBottomSheet(
+                              barrierColor: Colors.transparent,
+                              context: context,
+                              builder: (context) {
+                                return Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: <Widget>[
+                                    BottomSheetButton(
+                                      colorChanger: colorState,
+                                      message: "Share The Doctor",
+                                    ),
+                                    BottomSheetButton(
+                                      colorChanger: colorState,
+                                      message: "Add Report to Favorites",
+                                    ),
+                                    BottomSheetButton(
+                                      colorChanger: colorState,
+                                      message: "Add Doctor to Favorites",
+                                    ),
+                                  ],
+                                );
+                              }).whenComplete(() => colorChange());
                         },
                         buttonInfo: widget.followUpTime,
                         size: widget.size,
@@ -304,7 +348,7 @@ class _PastAppointmentsState extends State<PastAppointments> {
                               ),
                             ),
                           );
-                          colorChange();
+                          
                         },
                       ),
                     ),
@@ -315,7 +359,31 @@ class _PastAppointmentsState extends State<PastAppointments> {
                       imagePath: "assets/person_outlined.png",
                       buttonText: "Update",
                       voidCallback: () {
+                        print(size.height);
+                        print(size.width);
                         colorChange();
+                        showModalBottomSheet(
+                            barrierColor: Colors.transparent,
+                            context: context,
+                            builder: (context) {
+                              return Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  BottomSheetButton(
+                                    colorChanger: colorState,
+                                    message: "Share The Doctor",
+                                  ),
+                                  BottomSheetButton(
+                                    colorChanger: colorState,
+                                    message: "Add Report to Favorites",
+                                  ),
+                                  BottomSheetButton(
+                                    colorChanger: colorState,
+                                    message: "Add Doctor to Favorites",
+                                  ),
+                                ],
+                              );
+                            }).whenComplete(() => colorChange());
                       },
                       colorChanger: colorState,
                     )
